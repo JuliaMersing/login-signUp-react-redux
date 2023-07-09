@@ -7,6 +7,7 @@ import { store } from './features/store';
 import { Login } from './pages/login';
 import { SignUp } from './pages/signUp';
 import { Error } from './pages/error';
+import { Payment } from './pages/payment';
 
 export const App: React.FunctionComponent = () => {
 	return (
@@ -17,6 +18,7 @@ export const App: React.FunctionComponent = () => {
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/signUp" element={<SignUp />} />
+						<Route path="/payment" element={<Payment />} />
 						<Route path="*" element={<Error />} />
 					</Routes>
 				</BrowserRouter>
