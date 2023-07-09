@@ -11,6 +11,13 @@ It also has:
 
 It's build using reusable components: easy to test and cleaner code avoiding repetitions.
 
+## About this proyect
+
+- Users can log in, and the email is saved in the Redux state under the register slice.
+- Users can sign up, and the email and password are saved in the Redux state under the signUp slice.
+- I am currently working on the payment page, and there's a placeholder page to notify users about it.
+- If users navigate to a page that doesn't exist, a "Not Found" page is displayed.
+
 ## Available Scripts
 
 In the project directory, you can run:
