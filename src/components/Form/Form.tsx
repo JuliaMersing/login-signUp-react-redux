@@ -54,22 +54,8 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 		setEmailError(emailError);
 		setPasswordError(passwordError);
 
-		if (!validLogin) {
+		if (!validLogin || email === '' || (isSignUp && passwordError !== '')) {
 			toast.error('Please fill in all the required fields.', {
-				position: toast.POSITION.TOP_CENTER,
-			});
-			return;
-		}
-
-		if (isSignUp && emailError !== '') {
-			toast.error('Invalid email provided.', {
-				position: toast.POSITION.TOP_CENTER,
-			});
-			return;
-		}
-
-		if (isSignUp && passwordError !== '') {
-			toast.error('Invalid password provided.', {
 				position: toast.POSITION.TOP_CENTER,
 			});
 			return;
@@ -87,6 +73,9 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 			});
 		} else {
 			dispatch(existingUser({ email }));
+			toast.success('Almost there!', {
+				position: toast.POSITION.TOP_CENTER,
+			});
 		}
 		navigate('/payment');
 	};
