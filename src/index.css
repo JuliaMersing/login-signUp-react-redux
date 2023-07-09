@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container-app {
+    @apply container mx-auto my-8 px-4 mt-20
+  }
+  .container-title {
+    @apply flex justify-center items-center mb-8
+  }
+  .container-error{
+    @apply bg-red-100 rounded-lg text-red-700 px-6 py-4 border-0 relative
+  }
+  .title {
+    @apply text-3xl font-bold text-purple-600
+  }
+  .button {
+    @apply flex items-center justify-center px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 mt-10 mb-10
+  }
+  .button-error{
+    @apply absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none
+  }
+  .cards-image{
+    @apply h-64 w-56 transform hover:scale-110
+  }
+  .cards-list {
+    @apply flex flex-wrap
+  }
+  .error-message{
+    @apply inline-block align-middle mr-8
+  }
+}
