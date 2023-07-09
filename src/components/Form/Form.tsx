@@ -141,7 +141,6 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 							/>
 						)}
 					</div>
-
 					{isSignUp ? <Button> Sign in </Button> : <Button> Login </Button>}
 				</form>
 			</div>
