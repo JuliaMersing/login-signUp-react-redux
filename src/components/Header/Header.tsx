@@ -1,15 +1,25 @@
 import React from 'react';
 
 interface HeaderProps {
-	title: string;
+	heading: string;
+	paragraph?: string;
+	href?: string;
+	linkParagraph?: string;
 }
 
-export const Header: React.FunctionComponent<HeaderProps> = ({
-	title,
-}: HeaderProps) => {
-	return (
-		<div className="container-title">
-			<h2 className="title">{title}</h2>
-		</div>
-	);
-};
+export const Header: React.FC<HeaderProps> = ({
+	heading,
+	paragraph,
+	href,
+	linkParagraph,
+}) => (
+	<>
+		<h2 className="heading">{heading}</h2>
+		<p className="paragraphs">
+			{paragraph}
+			<a href={href} className="link">
+				{linkParagraph}
+			</a>
+		</p>
+	</>
+);
