@@ -19,7 +19,6 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 	const [password, setPassword] = useState('');
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
-	const validLogin = passwordError === '' && emailError === '';
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -49,19 +48,17 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const emailError = verifyEmail(email);
-		const passwordError = verifyPassword(password);
-		setEmailError(emailError);
-		setPasswordError(passwordError);
-
-		if (!validLogin || email === '' || (isSignUp && passwordError !== '')) {
-			toast.error('Please fill in all the required fields.', {
-				position: toast.POSITION.TOP_CENTER,
-			});
-			return;
-		}
-
 		if (isSignUp) {
+			const emailError = verifyEmail(email);
+			const passwordError = verifyPassword(password);
+
+			if (emailError || passwordError) {
+				toast.error('Please fill in all the required fields.', {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				return;
+			}
+
 			dispatch(
 				newUser({
 					email,
@@ -72,11 +69,21 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 				position: toast.POSITION.TOP_CENTER,
 			});
 		} else {
+			const emailError = verifyEmail(email);
+
+			if (emailError) {
+				toast.error('Please fill in all the required fields.', {
+					position: toast.POSITION.TOP_CENTER,
+				});
+				return;
+			}
+
 			dispatch(existingUser({ email }));
 			toast.success('Almost there!', {
 				position: toast.POSITION.TOP_CENTER,
 			});
 		}
+
 		navigate('/payment');
 	};
 
@@ -125,7 +132,7 @@ export const Form: React.FC<FormProps> = ({ isSignUp = false }) => {
 								type="password"
 								name="password"
 								value={password}
-								placeholder="Confirm password"
+								placeholder="Password"
 								onChange={handleInputChange}
 								onBlur={handleInputBlur}
 								error={passwordError}
